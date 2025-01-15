@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2sqhgwh575sl"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_2eeov"]
+[ext_resource type="PackedScene" uid="uid://c7d1bkhb7s3lq" path="res://skin.tscn" id="1_4c7dd"]
+[ext_resource type="PackedScene" path="res://common/shadow.tscn" id="2_nn50o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4mw4"]
+radius = 30.0
+height = 74.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_2eeov")
+
+[node name="Skin" parent="." instance=ExtResource("1_4c7dd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 20)
+shape = SubResource("CapsuleShape2D_x4mw4")
+
+[node name="Shadow" parent="." instance=ExtResource("2_nn50o")]
+position = Vector2(1, 63)
+
+[node name="Camera2D" type="Camera2D" parent="."]

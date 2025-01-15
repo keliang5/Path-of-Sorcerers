@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7d1bkhb7s3lq"]
+
+[ext_resource type="Texture2D" uid="uid://bw03btxpkxde4" path="res://player/godot_bottom.png" id="1_qhcp7"]
+[ext_resource type="Script" path="res://skin.gd" id="2_rw6eo"]
+
+[node name="Skin" type="Sprite2D"]
+texture = ExtResource("1_qhcp7")
+script = ExtResource("2_rw6eo")
