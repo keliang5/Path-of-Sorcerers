@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2sqhgwh575sl"]
+[gd_scene load_steps=8 format=3 uid="uid://d2sqhgwh575sl"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_2eeov"]
 [ext_resource type="PackedScene" uid="uid://c7d1bkhb7s3lq" path="res://skin.tscn" id="1_4c7dd"]
+[ext_resource type="Script" path="res://weapon.gd" id="2_7o4i1"]
 [ext_resource type="PackedScene" path="res://common/shadow.tscn" id="2_nn50o"]
+[ext_resource type="Script" path="res://weaponpivot.gd" id="4_p8irr"]
+[ext_resource type="Texture2D" uid="uid://dekkcmj408pvt" path="res://player/hand_fire.png" id="5_10fg8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4mw4"]
 radius = 30.0
@@ -22,3 +25,24 @@ shape = SubResource("CapsuleShape2D_x4mw4")
 position = Vector2(1, 63)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="weaponpivot" type="Node2D" parent="."]
+rotation = 0.0261385
+script = ExtResource("4_p8irr")
+
+[node name="weaponanchor" type="Marker2D" parent="weaponpivot"]
+position = Vector2(100, 0)
+
+[node name="weapon" type="Node2D" parent="weaponpivot/weaponanchor"]
+script = ExtResource("2_7o4i1")
+
+[node name="LeftHand" type="Sprite2D" parent="weaponpivot/weaponanchor"]
+position = Vector2(0, -33)
+rotation = -0.174533
+texture = ExtResource("5_10fg8")
+
+[node name="RightHand" type="Sprite2D" parent="weaponpivot/weaponanchor"]
+position = Vector2(0, 33)
+rotation = 3.33183
+texture = ExtResource("5_10fg8")
+flip_h = true
