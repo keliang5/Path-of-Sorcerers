@@ -5,7 +5,10 @@ class_name Mob extends CharacterBody2D
 var _player: player = null
 
 @onready var _agrro: Area2D = $Agrro
-@onready var hitbox: CollisionShape2D = $Hitbox
+@onready var hitbox: Area2D = $Hitbox
+@onready var damage_timer: Timer = $Timer
+
+@export var damage = 1.0
 
 
 func _ready() -> void:
@@ -17,7 +20,18 @@ func _ready() -> void:
 		if body is player:
 			_player = null
 	)
-
+	hitbox.body_entered.connect(func (body: Node) -> void:
+		if body is player:
+			body.health -= damage
+			damage_timer.start()
+	)
+	hitbox.body_exited.connect(func (body: Node) -> void:
+		if body is player:
+			damage_timer.stop()
+	)
+	damage_timer.timeout.connect(func ()-> void:
+		_player.health -= damage
+	)
 func _physics_process(delta: float) -> void:
 	if _player ==null:
 		velocity = velocity.move_toward(Vector2.ZERO, acceleration * delta)

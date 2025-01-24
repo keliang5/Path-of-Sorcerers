@@ -1,27 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://c71trewpqadc4"]
+[gd_scene load_steps=6 format=3 uid="uid://c71trewpqadc4"]
 
 [ext_resource type="Script" path="res://mob.gd" id="1_g5nuu"]
 [ext_resource type="Texture2D" uid="uid://nohjoiah3jgr" path="res://mobs/sword_inactive.png" id="2_di76m"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryv8l"]
-radius = 26.0737
-height = 140.031
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_legmn"]
-radius = 251.336
+radius = 352.115
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ryv8l"]
+radius = 23.9627
+height = 149.976
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6t7e"]
+radius = 21.0
+height = 146.011
 
 [node name="Mob" type="CharacterBody2D"]
 script = ExtResource("1_g5nuu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(1, 1)
 texture = ExtResource("2_di76m")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-rotation = -1.57987
-shape = SubResource("CapsuleShape2D_ryv8l")
+[node name="Timer" type="Timer" parent="."]
 
 [node name="Agrro" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Agrro"]
 shape = SubResource("CircleShape2D_legmn")
 debug_color = Color(0.268088, 0.619269, 0.38251, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="."]
+rotation = -1.57987
+scale = Vector2(1, 1)
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.0181471, -1.99992)
+shape = SubResource("CapsuleShape2D_ryv8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -4.63842e-10)
+rotation = -1.56351
+shape = SubResource("CapsuleShape2D_f6t7e")

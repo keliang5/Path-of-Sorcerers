@@ -13,6 +13,3 @@ position = Vector2(778, 662)
 
 [node name="Mob" parent="." instance=ExtResource("3_fx21p")]
 position = Vector2(432, 360)
-health = 3
-max_speed = 250.0
-acceleration = 700.0
