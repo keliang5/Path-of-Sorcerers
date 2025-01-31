@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://c2janngdf7ayg"]
+[gd_scene load_steps=3 format=3 uid="uid://bki1iijliqssx"]
+
+[sub_resource type="GDScript" id="GDScript_sbvoj"]
+script/source = "class_name Pickups extends Area2D
+
+@export var item: Item = null
+@onready var sprite: Sprite2D = $Sprite2D
+
+func ready() -> void:
+	sprite.texture = item.Display_image
+	body_entered.connect(func(body: Node) -> void:
+		if body is Player:
+			item.use(body)
+			queue_free()
+)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_whg1m"]
 
 [node name="Pickups" type="Area2D"]
+script = SubResource("GDScript_sbvoj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_whg1m")

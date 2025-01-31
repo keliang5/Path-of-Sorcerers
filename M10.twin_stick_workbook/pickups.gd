@@ -1,11 +1,13 @@
-extends Area2D
+class_name Pickups extends Area2D
+
+@export var item: Item = null
+@onready var sprite: Sprite2D = %Sprite2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func ready() -> void:
+	sprite.texture = item.Display_image
+	body_entered.connect(func(body: Node) -> void:
+		if body is Player:
+			item.use(body)
+			queue_free()
+)
