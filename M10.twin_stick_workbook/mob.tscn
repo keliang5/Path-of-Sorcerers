@@ -19,7 +19,6 @@ script = ExtResource("1_g5nuu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -1)
-scale = Vector2(1, 1)
 texture = ExtResource("2_di76m")
 
 [node name="Timer" type="Timer" parent="."]
@@ -32,7 +31,6 @@ debug_color = Color(0.268088, 0.619269, 0.38251, 0.42)
 
 [node name="Hitbox" type="Area2D" parent="."]
 rotation = -1.57987
-scale = Vector2(1, 1)
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.0181471, -1.99992)

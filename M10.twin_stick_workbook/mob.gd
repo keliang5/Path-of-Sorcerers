@@ -2,7 +2,7 @@ class_name Mob extends CharacterBody2D
 @export var health := 5: set= set_health
 @export var max_speed := 250.0
 @export var acceleration := 700.0
-var _player: player = null
+var _player: Player = null
 
 @onready var _agrro: Area2D = $Agrro
 @onready var hitbox: Area2D = $Hitbox
@@ -13,20 +13,20 @@ var _player: player = null
 
 func _ready() -> void:
 	_agrro.body_entered.connect(func (body:Node) -> void:
-		if body is player:
+		if body is Player:
 			_player = body
 		)
 	_agrro.body_exited.connect(func (body: Node) -> void:
-		if body is player:
+		if body is Player:
 			_player = null
 	)
 	hitbox.body_entered.connect(func (body: Node) -> void:
-		if body is player:
+		if body is Player:
 			body.health -= damage
 			damage_timer.start()
 	)
 	hitbox.body_exited.connect(func (body: Node) -> void:
-		if body is player:
+		if body is Player:
 			damage_timer.stop()
 	)
 	damage_timer.timeout.connect(func ()-> void:
