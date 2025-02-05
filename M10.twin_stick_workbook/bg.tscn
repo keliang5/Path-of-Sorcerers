@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://wf6nx66mvkdu"]
+[gd_scene load_steps=13 format=3 uid="uid://wf6nx66mvkdu"]
 
 [ext_resource type="PackedScene" uid="uid://cu2rb5dl4ljte" path="res://levels/rooms/room_a.tscn" id="1_jrp48"]
 [ext_resource type="PackedScene" uid="uid://d2sqhgwh575sl" path="res://player.tscn" id="2_8hwlr"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://biluxu10n4ttm" path="res://pickups/pickup_gem.png" id="5_4movo"]
 [ext_resource type="AudioStream" uid="uid://dsmj3ii4ncxyl" path="res://pickups/pickup_ice.wav" id="6_k4ufp"]
 [ext_resource type="Script" path="res://Speed_Item.gd" id="6_lwd6y"]
+[ext_resource type="Script" path="res://Healing_Item.gd" id="8_wfmfc"]
+[ext_resource type="AudioStream" uid="uid://o3ra7o263286" path="res://pickups/pickup_health.wav" id="9_y3ebv"]
+[ext_resource type="Texture2D" uid="uid://bmxcojfothkaq" path="res://pickups/pickup_heart_teal.png" id="10_nupm0"]
 
 [sub_resource type="Resource" id="Resource_qbuf4"]
 script = ExtResource("6_lwd6y")
@@ -14,6 +17,13 @@ speed_up = 100.0
 display_name = "speed"
 texture = ExtResource("5_4movo")
 sound_on_pickup = ExtResource("6_k4ufp")
+
+[sub_resource type="Resource" id="Resource_dvs60"]
+script = ExtResource("8_wfmfc")
+heal = 1
+display_name = "Healing"
+texture = ExtResource("10_nupm0")
+sound_on_pickup = ExtResource("9_y3ebv")
 
 [node name="Bg" type="Node2D"]
 
@@ -25,7 +35,12 @@ position = Vector2(778, 662)
 [node name="Mob" parent="." instance=ExtResource("3_fx21p")]
 position = Vector2(432, 360)
 
-[node name="Pickup" parent="." instance=ExtResource("4_26by1")]
+[node name="SpeedItem" parent="." instance=ExtResource("4_26by1")]
 position = Vector2(1174, 643)
 scale = Vector2(1.5, 1.5)
 item = SubResource("Resource_qbuf4")
+
+[node name="Pickup" parent="." instance=ExtResource("4_26by1")]
+position = Vector2(1132, 427)
+scale = Vector2(1.5, 1.5)
+item = SubResource("Resource_dvs60")
