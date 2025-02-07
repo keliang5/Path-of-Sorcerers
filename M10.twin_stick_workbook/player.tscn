@@ -62,6 +62,11 @@ script = ExtResource("4_p8irr")
 position = Vector2(100, 0)
 
 [node name="weapon" type="Node2D" parent="weaponpivot/weaponanchor"]
+position = Vector2(0.880582, 32.3745)
+script = ExtResource("2_7o4i1")
+
+[node name="weapon2" type="Node2D" parent="weaponpivot/weaponanchor"]
+position = Vector2(-0.792089, -31.6036)
 script = ExtResource("2_7o4i1")
 
 [node name="LeftHand" type="Sprite2D" parent="weaponpivot/weaponanchor"]

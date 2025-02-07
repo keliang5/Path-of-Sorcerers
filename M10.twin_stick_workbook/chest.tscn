@@ -1,0 +1,86 @@
+[gd_scene load_steps=17 format=3 uid="uid://b2fc61vfsj75p"]
+
+[ext_resource type="Script" path="res://chest.gd" id="1_7c36m"]
+[ext_resource type="Texture2D" uid="uid://dub7cda3qxho2" path="res://pickups/chest/chest_bottom.png" id="2_cnjeh"]
+[ext_resource type="Script" path="res://Item.gd" id="2_ylkd8"]
+[ext_resource type="Script" path="res://Speed_Item.gd" id="3_6a0pw"]
+[ext_resource type="Texture2D" uid="uid://bfj2ayjhou4bv" path="res://pickups/chest/chest_top.png" id="3_tdw04"]
+[ext_resource type="AudioStream" uid="uid://dsmj3ii4ncxyl" path="res://pickups/pickup_ice.wav" id="4_jw625"]
+[ext_resource type="Texture2D" uid="uid://biluxu10n4ttm" path="res://pickups/pickup_gem.png" id="5_umoha"]
+[ext_resource type="Script" path="res://Healing_Item.gd" id="6_vxrm8"]
+[ext_resource type="AudioStream" uid="uid://o3ra7o263286" path="res://pickups/pickup_health.wav" id="7_fplvb"]
+[ext_resource type="Texture2D" uid="uid://bmxcojfothkaq" path="res://pickups/pickup_heart_teal.png" id="8_6q1jq"]
+
+[sub_resource type="Resource" id="Resource_icgge"]
+script = ExtResource("3_6a0pw")
+speed_up = 100.0
+display_name = "SpeedItem"
+texture = ExtResource("5_umoha")
+sound_on_pickup = ExtResource("4_jw625")
+
+[sub_resource type="Resource" id="Resource_1475b"]
+script = ExtResource("6_vxrm8")
+heal = 1
+display_name = ""
+texture = ExtResource("8_6q1jq")
+sound_on_pickup = ExtResource("7_fplvb")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfyhn"]
+size = Vector2(83, 70)
+
+[sub_resource type="Animation" id="Animation_6fddb"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(10, -10), Vector2(65, -68), Vector2(95, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fvqod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4xlx"]
+_data = {
+"RESET": SubResource("Animation_fvqod"),
+"open": SubResource("Animation_6fddb")
+}
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_7c36m")
+possible_items = Array[ExtResource("2_ylkd8")]([SubResource("Resource_icgge"), SubResource("Resource_1475b")])
+
+[node name="ChestBottom" type="Sprite2D" parent="."]
+position = Vector2(10.5, -10.5)
+texture = ExtResource("2_cnjeh")
+
+[node name="ChestTop" type="Sprite2D" parent="."]
+position = Vector2(10, -10)
+texture = ExtResource("3_tdw04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, -3)
+shape = SubResource("RectangleShape2D_lfyhn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l4xlx")
+}
