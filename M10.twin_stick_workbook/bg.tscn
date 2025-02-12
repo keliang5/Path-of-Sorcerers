@@ -12,13 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bmxcojfothkaq" path="res://pickups/pickup_heart_teal.png" id="10_nupm0"]
 [ext_resource type="PackedScene" uid="uid://b2fc61vfsj75p" path="res://chest.tscn" id="11_0vk8u"]
 
-[sub_resource type="Resource" id="Resource_qbuf4"]
-script = ExtResource("6_lwd6y")
-speed_up = 100.0
-display_name = "speed"
-texture = ExtResource("5_4movo")
-sound_on_pickup = ExtResource("6_k4ufp")
-
 [sub_resource type="Resource" id="Resource_dvs60"]
 script = ExtResource("8_wfmfc")
 heal = 1
@@ -26,25 +19,36 @@ display_name = "Healing"
 texture = ExtResource("10_nupm0")
 sound_on_pickup = ExtResource("9_y3ebv")
 
-[node name="Bg" type="Node2D"]
+[sub_resource type="Resource" id="Resource_qbuf4"]
+script = ExtResource("6_lwd6y")
+speed_up = 100.0
+display_name = "speed"
+texture = ExtResource("5_4movo")
+sound_on_pickup = ExtResource("6_k4ufp")
+
+[node name="Game" type="Node2D"]
 
 [node name="RoomA" parent="." instance=ExtResource("1_jrp48")]
 
-[node name="Player" parent="." instance=ExtResource("2_8hwlr")]
-position = Vector2(778, 662)
-
-[node name="Mob" parent="." instance=ExtResource("3_fx21p")]
-position = Vector2(432, 360)
-
-[node name="SpeedItem" parent="." instance=ExtResource("4_26by1")]
-position = Vector2(1174, 643)
-scale = Vector2(1.5, 1.5)
-item = SubResource("Resource_qbuf4")
-
-[node name="Pickup" parent="." instance=ExtResource("4_26by1")]
-position = Vector2(1132, 427)
+[node name="Pickup" parent="RoomA" instance=ExtResource("4_26by1")]
+position = Vector2(1131.51, 428.297)
+rotation = 0.00114604
 scale = Vector2(1.5, 1.5)
 item = SubResource("Resource_dvs60")
 
-[node name="Chest" parent="." instance=ExtResource("11_0vk8u")]
-position = Vector2(450, 931)
+[node name="SpeedItem" parent="RoomA" instance=ExtResource("4_26by1")]
+position = Vector2(1173.26, 644.345)
+rotation = 0.00114604
+scale = Vector2(1.5, 1.5)
+item = SubResource("Resource_qbuf4")
+
+[node name="Chest" parent="RoomA" instance=ExtResource("11_0vk8u")]
+position = Vector2(448.933, 931.515)
+rotation = 0.00114604
+
+[node name="Mob" parent="RoomA" instance=ExtResource("3_fx21p")]
+position = Vector2(431.587, 360.495)
+rotation = 0.00114604
+
+[node name="Player" parent="." instance=ExtResource("2_8hwlr")]
+position = Vector2(778, 662)

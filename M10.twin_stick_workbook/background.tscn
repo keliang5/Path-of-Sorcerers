@@ -1,0 +1,129 @@
+[gd_scene load_steps=22 format=4 uid="uid://dwnuj845lxgdc"]
+
+[ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background/background_blue_sky.tscn" id="1_p0vt1"]
+[ext_resource type="PackedScene" uid="uid://cu2rb5dl4ljte" path="res://levels/rooms/room_a.tscn" id="2_03gc4"]
+[ext_resource type="PackedScene" uid="uid://bki1iijliqssx" path="res://pickup.tscn" id="3_beb7k"]
+[ext_resource type="Script" path="res://Healing_Item.gd" id="4_epd48"]
+[ext_resource type="AudioStream" uid="uid://o3ra7o263286" path="res://pickups/pickup_health.wav" id="5_hi6aj"]
+[ext_resource type="Texture2D" uid="uid://bmxcojfothkaq" path="res://pickups/pickup_heart_teal.png" id="6_0taud"]
+[ext_resource type="Script" path="res://Speed_Item.gd" id="7_cqtmm"]
+[ext_resource type="AudioStream" uid="uid://dsmj3ii4ncxyl" path="res://pickups/pickup_ice.wav" id="8_dlj0n"]
+[ext_resource type="Texture2D" uid="uid://biluxu10n4ttm" path="res://pickups/pickup_gem.png" id="9_yfl10"]
+[ext_resource type="PackedScene" uid="uid://b2fc61vfsj75p" path="res://chest.tscn" id="10_iblqc"]
+[ext_resource type="PackedScene" uid="uid://c71trewpqadc4" path="res://mob.tscn" id="11_8x8eq"]
+[ext_resource type="PackedScene" uid="uid://d2sqhgwh575sl" path="res://player.tscn" id="12_2kq2t"]
+[ext_resource type="PackedScene" uid="uid://dgayuh42w4v6u" path="res://levels/rooms/room_b.tscn" id="13_oj58p"]
+[ext_resource type="Script" path="res://Item.gd" id="14_c3rgo"]
+[ext_resource type="PackedScene" uid="uid://cq0mmphkbrvmm" path="res://levels/rooms/room_c.tscn" id="14_o1ydw"]
+[ext_resource type="PackedScene" uid="uid://dlxjrgals3rg2" path="res://levels/invisible_walls.tscn" id="15_3vl5y"]
+[ext_resource type="PackedScene" uid="uid://c3fl3stluv0gn" path="res://levels/bridges.tscn" id="15_r60k0"]
+
+[sub_resource type="Resource" id="Resource_04i7x"]
+script = ExtResource("4_epd48")
+heal = 1
+display_name = "Healing"
+texture = ExtResource("6_0taud")
+sound_on_pickup = ExtResource("5_hi6aj")
+
+[sub_resource type="Resource" id="Resource_fwx1l"]
+script = ExtResource("7_cqtmm")
+speed_up = 100.0
+display_name = "speed"
+texture = ExtResource("9_yfl10")
+sound_on_pickup = ExtResource("8_dlj0n")
+
+[sub_resource type="Resource" id="Resource_ged2p"]
+script = ExtResource("7_cqtmm")
+speed_up = 100.0
+display_name = ""
+texture = ExtResource("9_yfl10")
+sound_on_pickup = ExtResource("8_dlj0n")
+
+[sub_resource type="Resource" id="Resource_1475b"]
+script = ExtResource("4_epd48")
+heal = 1
+display_name = ""
+texture = ExtResource("6_0taud")
+sound_on_pickup = ExtResource("5_hi6aj")
+
+[node name="Background" type="Node2D"]
+y_sort_enabled = true
+
+[node name="BackgroundBlueSky" parent="." instance=ExtResource("1_p0vt1")]
+
+[node name="RoomA" parent="." instance=ExtResource("2_03gc4")]
+
+[node name="Pickup" parent="RoomA" instance=ExtResource("3_beb7k")]
+position = Vector2(1131.51, 428.297)
+rotation = 0.00114604
+scale = Vector2(1.5, 1.5)
+item = SubResource("Resource_04i7x")
+
+[node name="SpeedItem" parent="RoomA" instance=ExtResource("3_beb7k")]
+position = Vector2(1173.26, 644.345)
+rotation = 0.00114604
+scale = Vector2(1.5, 1.5)
+item = SubResource("Resource_fwx1l")
+
+[node name="Chest" parent="RoomA" instance=ExtResource("10_iblqc")]
+position = Vector2(448.933, 931.515)
+rotation = 0.00114604
+
+[node name="Mob" parent="RoomA" instance=ExtResource("11_8x8eq")]
+position = Vector2(431.587, 360.495)
+rotation = 0.00114604
+
+[node name="Mob2" parent="RoomA" instance=ExtResource("11_8x8eq")]
+position = Vector2(1093.85, 1008.25)
+rotation = 0.00114604
+
+[node name="Player" parent="." instance=ExtResource("12_2kq2t")]
+position = Vector2(700, 667)
+collision_mask = 64
+
+[node name="RoomB" parent="." instance=ExtResource("13_oj58p")]
+position = Vector2(1992, 40)
+
+[node name="Mob" parent="RoomB" instance=ExtResource("11_8x8eq")]
+position = Vector2(327, 446)
+collision_mask = 64
+
+[node name="Mob2" parent="RoomB" instance=ExtResource("11_8x8eq")]
+position = Vector2(1013, 319)
+
+[node name="Mob3" parent="RoomB" instance=ExtResource("11_8x8eq")]
+position = Vector2(731, 715)
+
+[node name="Chest" parent="RoomB" instance=ExtResource("10_iblqc")]
+position = Vector2(1138, 712)
+possible_items = Array[ExtResource("14_c3rgo")]([SubResource("Resource_ged2p"), SubResource("Resource_1475b")])
+
+[node name="RoomC" parent="." instance=ExtResource("14_o1ydw")]
+position = Vector2(1728, -2000)
+
+[node name="Chest2" parent="RoomC" instance=ExtResource("10_iblqc")]
+position = Vector2(400, 325)
+
+[node name="Mob6" parent="RoomC" instance=ExtResource("11_8x8eq")]
+position = Vector2(884, 570)
+rotation = -0.00114604
+
+[node name="Mob5" parent="RoomC" instance=ExtResource("11_8x8eq")]
+position = Vector2(624, 1116)
+rotation = -0.00114604
+
+[node name="Mob4" parent="RoomC" instance=ExtResource("11_8x8eq")]
+position = Vector2(1173, 1107)
+rotation = -0.00114604
+
+[node name="Mob3" parent="RoomC" instance=ExtResource("11_8x8eq")]
+position = Vector2(1234, 1732)
+rotation = -0.00114604
+
+[node name="Bridges" parent="." instance=ExtResource("15_r60k0")]
+position = Vector2(717, 675)
+tile_map_data = PackedByteArray("AAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAHAP//AAACAAEAAAAIAP//AAACAAEAAAAJAP//AAACAAEAAAARAPr/AAAEAAEAAAARAPn/AAAEAAEAAAARAPj/AAAEAAEAAAARAPf/AAAEAAEAAAARAPb/AAAEAAEAAAARAPX/AAAEAAEAAAA=")
+
+[node name="InvisibleWalls" parent="." instance=ExtResource("15_3vl5y")]
+position = Vector2(72, 38)
+tile_map_data = PackedByteArray("AAAYAP//AAAAAAAAAAAWAAQAAAABAAAAAAAXAAQAAAABAAAAAAAYAAQAAAABAAAAAAAZAAQAAAABAAAAAAAVAP7/AAAAAAAAAAAVAP3/AAAAAAAAAAAVAPz/AAAAAAAAAAAXAP7/AAAAAAAAAAAXAP3/AAAAAAAAAAAXAPz/AAAAAAAAAAANAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAALAAMAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAFAAYAAAABAAAAAAAGAAYAAAABAAAAAAAHAAYAAAABAAAAAAACAAQAAAABAAAAAAABAAQAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAARAAEAAAABAAAAAAASAAEAAAABAAAAAAATAAEAAAABAAAAAAAVAAMAAAABAAAAAAAWAAMAAAABAAAAAAAXAAMAAAABAAAAAAAYAAMAAAABAAAAAAASAPr/AAAAAAAAAAATAPr/AAAAAAAAAAAUAPr/AAAAAAAAAAAUAPb/AAABAAAAAAAXAPj/AAABAAAAAAAVAPT/AAABAAAAAAAGAAAAAAABAAAAAAAEAAYAAAABAAAAAAAIAAYAAAABAAAAAAA=")
