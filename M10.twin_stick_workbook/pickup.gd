@@ -13,6 +13,7 @@ func _ready() -> void:
 		if body is Player:
 			item.use(body)
 			animation_player.play("destroy")
+			set_deferred("monitoring", false)
 			audio_stream_player.play()
 			animation_player.animation_finished.connect(func(animation_name: String) ->void:
 				queue_free()

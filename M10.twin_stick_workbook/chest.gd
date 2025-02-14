@@ -2,13 +2,22 @@
 class_name Chest extends Area2D
 @export var possible_items: Array[Item] = []
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+var is_player_near := false
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and Player != null:
+	if event.is_action_pressed("interact") and is_player_near:
 		animation_player.play("open")
 		create_pickup()
 		create_pickup()
-		
+		get_viewport().set_input_as_handled()
+		set_deferred("monitoring", false)
+func _ready() -> void:
+	body_entered.connect(func (body: Node) ->void:
+		is_player_near = true
+	)
+	body_exited.connect(func (body: Node) ->void:
+		is_player_near = false
+	)
+	
 func create_pickup() -> void:
 	var item: Item = possible_items.pick_random()
 	var pickup: Pickup = preload("pickup.tscn").instantiate()

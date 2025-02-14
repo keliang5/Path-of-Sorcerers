@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=4 uid="uid://dwnuj845lxgdc"]
+[gd_scene load_steps=25 format=4 uid="uid://dwnuj845lxgdc"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_ix7pg"]
 [ext_resource type="PackedScene" uid="uid://wdey00p3syru" path="res://levels/background/background_blue_sky.tscn" id="1_p0vt1"]
 [ext_resource type="PackedScene" uid="uid://cu2rb5dl4ljte" path="res://levels/rooms/room_a.tscn" id="2_03gc4"]
 [ext_resource type="PackedScene" uid="uid://bki1iijliqssx" path="res://pickup.tscn" id="3_beb7k"]
@@ -17,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cq0mmphkbrvmm" path="res://levels/rooms/room_c.tscn" id="14_o1ydw"]
 [ext_resource type="PackedScene" uid="uid://dlxjrgals3rg2" path="res://levels/invisible_walls.tscn" id="15_3vl5y"]
 [ext_resource type="PackedScene" uid="uid://c3fl3stluv0gn" path="res://levels/bridges.tscn" id="15_r60k0"]
+[ext_resource type="PackedScene" uid="uid://dx0j3i0r80kpc" path="res://teleporter.tscn" id="18_fl4rh"]
+[ext_resource type="PackedScene" uid="uid://ykbpyxpkiktp" path="res://end_menu.tscn" id="20_jat40"]
 
 [sub_resource type="Resource" id="Resource_04i7x"]
 script = ExtResource("4_epd48")
@@ -46,8 +49,9 @@ display_name = ""
 texture = ExtResource("6_0taud")
 sound_on_pickup = ExtResource("5_hi6aj")
 
-[node name="Background" type="Node2D"]
+[node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_ix7pg")
 
 [node name="BackgroundBlueSky" parent="." instance=ExtResource("1_p0vt1")]
 
@@ -127,3 +131,11 @@ tile_map_data = PackedByteArray("AAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAHAP//AAACAAE
 [node name="InvisibleWalls" parent="." instance=ExtResource("15_3vl5y")]
 position = Vector2(72, 38)
 tile_map_data = PackedByteArray("AAAYAP//AAAAAAAAAAAWAAQAAAABAAAAAAAXAAQAAAABAAAAAAAYAAQAAAABAAAAAAAZAAQAAAABAAAAAAAVAP7/AAAAAAAAAAAVAP3/AAAAAAAAAAAVAPz/AAAAAAAAAAAXAP7/AAAAAAAAAAAXAP3/AAAAAAAAAAAXAPz/AAAAAAAAAAANAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAALAAMAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAFAAYAAAABAAAAAAAGAAYAAAABAAAAAAAHAAYAAAABAAAAAAACAAQAAAABAAAAAAABAAQAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAARAAEAAAABAAAAAAASAAEAAAABAAAAAAATAAEAAAABAAAAAAAVAAMAAAABAAAAAAAWAAMAAAABAAAAAAAXAAMAAAABAAAAAAAYAAMAAAABAAAAAAASAPr/AAAAAAAAAAATAPr/AAAAAAAAAAAUAPr/AAAAAAAAAAAUAPb/AAABAAAAAAAXAPj/AAABAAAAAAAVAPT/AAABAAAAAAAGAAAAAAABAAAAAAAEAAYAAAABAAAAAAAIAAYAAAABAAAAAAA=")
+
+[node name="Teleporter" parent="." instance=ExtResource("18_fl4rh")]
+position = Vector2(860, 368)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EndMenu" parent="CanvasLayer" instance=ExtResource("20_jat40")]
+visible = false
